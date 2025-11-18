@@ -8,6 +8,10 @@
 </p>
 
 ## CRC 규칙
+
+<img src="https://github.com/user-attachments/assets/37b8a013-28de-4753-bd8e-392c9e14063f" width="700px">
+
+
 (1) CRC-8
 
 Data Word 길이: 16, 32, 64, 128
@@ -33,3 +37,4 @@ Data Word 길이: 32, 64, 128, 256
 Data Word 길이: 64, 128, 256, 512
 
 에러 패턴 중 에러 비트 비율: 0%, 1%, 10%, 20%, 50% (소수점일 경우 올림 연산으로 수행)
+
