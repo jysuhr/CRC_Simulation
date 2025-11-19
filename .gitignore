@@ -1,0 +1,10 @@
+# 1. Ignore Simulation Output Files
+*.csv
+
+# 2. DO NOT IGNORE the final summary file (Use the exact name of your summary file)
+!Summary_Report_Statistics.csv
+
+# 3. Ignore Python and OS Cache Files
+__pycache__/
+*.pyc
+.DS_Store
