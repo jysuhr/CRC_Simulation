@@ -28,7 +28,7 @@ def generateDataWord(length):
 
     return data_word
 
-def _makeerror_pattern(length, errorRate):
+def generateErrorPattern(length, errorRate):
     # 에러 비트 개수
     numErrors = math.ceil(length * (errorRate * 0.01))
 
@@ -40,17 +40,6 @@ def _makeerror_pattern(length, errorRate):
         error_pattern = error_pattern | (1 << index)
 
     return error_pattern
-
-def __generateErrorData(length, errorRate):
-    dataWord = generateDataWord(length)
-    error_pattern = _makeerror_pattern(length, errorRate)
-    errorData = dataWord ^ error_pattern
-
-    # FIXME: 디버그용 출력문 - binForm으로 포맷
-    # print(f"[Debug] Data Word: \t{binForm(dataWord)}")
-    # print(f"[Debug] Error Pattern: \t{binForm(error_pattern)}")
-    # print(f"[Debug] Error Data: \t{binForm(errorData)}")
-    return errorData
 
 def calculateCRC(CRCType: CRC_TYPE, dataWord):
     crcBitNum, polynomial = CRCType.value
@@ -76,7 +65,7 @@ def calculateCRC(CRCType: CRC_TYPE, dataWord):
     
     return crc
 
-def makecode_word(CRCType: CRC_TYPE, dataWord, crc):
+def makecodeWord(CRCType: CRC_TYPE, dataWord, crc):
     shift_amount, _ = CRCType.value
     return dataWord << shift_amount | crc
 
@@ -93,19 +82,22 @@ def runSimulation(crc_type: CRC_TYPE, data_word_length: int, error_rate: int, ru
     num_errors_injected = run_num if error_rate > 0 else 0
 
     for k in range(run_num):
-        # Sender
+        # Generate
         data_word = generateDataWord(data_word_length)
-        
-        start_time = time.perf_counter() # 타이머 시작
-        code_word = makecode_word(crc_type, data_word, calculateCRC(crc_type, data_word))
+        error_pattern = generateErrorPattern(data_word.bit_length() + crc_bit_num, error_rate)
+
+        # ------------------- 타이머 시작 -----------------------
+        start_time = time.perf_counter()
+        code_word = makecodeWord(crc_type, data_word, calculateCRC(crc_type, data_word))
 
         # Error Injection
-        error_pattern = _makeerror_pattern(code_word.bit_length(), error_rate)
         error_data = code_word ^ error_pattern
 
         # Receiver
         syndrome = calculateCRC(crc_type, error_data)
-        end_time = time.perf_counter() # 타이머 종료
+        
+        end_time = time.perf_counter()
+        # ------------------- 타이머 끝 -----------------------
 
         # 통계 계산
         is_error_injected = (error_pattern != 0)
@@ -202,12 +194,7 @@ def main():
         writer.writerows(report_stats)
         
     print(f"\nFinal statistics summary saved to {summary_path}")
-
-
-
-# print("\n----- CRC Simulation Test -----")
+    
 
 if __name__ == "__main__":
     main()
-
-# print("--------------------------------\n")
