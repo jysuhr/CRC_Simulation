@@ -25,6 +25,12 @@
 <img width="500" alt="CRC16_errorRate별 디텍션" src="https://github.com/user-attachments/assets/fc53e6ce-3a44-425a-bd8d-3085018b64b0" />
 <img width="500" alt="CRC32_errorRate별 디텍션" src="https://github.com/user-attachments/assets/a4c29e86-b828-44b0-96a5-d05fa216f70c" />
 
+### Trade-off Error detection rate vs Delay
+<img width="500" alt="trade-off 16bit" src="https://github.com/user-attachments/assets/37814782-4384-4a0b-9d1b-2ed8dd642664" />
+<img width="500" alt="trade-off 32bit" src="https://github.com/user-attachments/assets/a5df933f-b064-4754-8605-3081211f3380" />
+<img width="500" alt="trade-off 64bit" src="https://github.com/user-attachments/assets/d75033b0-5c3c-4f76-a85f-1c1a5b16bf59" />
+<img width="500" alt="trade-off 128bit" src="https://github.com/user-attachments/assets/ae39a91d-dee2-49b5-bec7-c31b342e3ecf" />
+
 
 ## CRC 규칙
 
