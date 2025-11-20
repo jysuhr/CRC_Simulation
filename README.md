@@ -11,12 +11,10 @@
 </p>
 
 ## 시뮬레이션 결과 시각화
-에러 확률 0, 1, 10, 20, 50의 평균치는 0에서의 Error Detection이 0%이므로 최대 80%입니다.
-<img width="800" alt="타입별 디텍션 BarChart" src="https://github.com/user-attachments/assets/31526ab8-2986-49ca-91d8-763a2bf4a4d9" />
+에러 확률 0%는 평균치 계산에서 제외했습니다.
+<img width="800" alt="타입별 디텍션 BarChart_0제외" src="https://github.com/user-attachments/assets/6296aa3b-7863-4cd7-ad64-bc9905f5d714" />
 
-<img width="500" alt="타입별 평균 errorDetection Rate_Barplot" src="https://github.com/user-attachments/assets/cb0ea734-4ad4-4284-974c-f20371c00ecf" />
-
-<img width="600" alt="Error Detection Hitmap" src="https://github.com/user-attachments/assets/007e14d9-75b1-49b2-b573-9124de3ef23a" />
+<img width="600" alt="디텍션 hitmap_0제외" src="https://github.com/user-attachments/assets/3f227894-50ac-489b-bfb3-152e42cb5b6f" />
 
 <img width="800" alt="Delay violinChart" src="https://github.com/user-attachments/assets/cfb659d4-fd3a-4e86-af8b-fe4c3656b859" />
 
