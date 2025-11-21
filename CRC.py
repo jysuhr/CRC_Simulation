@@ -44,7 +44,7 @@ def generateErrorPattern(length, errorRate):
 def calculateCRC(CRCType: CRC_TYPE, dataWord):
     crcBitNum, polynomial = CRCType.value
     dividend = (dataWord << crcBitNum)
-    dividend_debug = (dataWord << crcBitNum) # FIXME: 디버그용
+    # dividend_debug = (dataWord << crcBitNum) # FIXME: 디버그용
     current_len = dividend.bit_length()
     
     for i in range(current_len, crcBitNum, -1):
@@ -123,9 +123,11 @@ def runSimulation(crc_type: CRC_TYPE, data_word_length: int, error_rate: int, ru
     detection_rate_pct = (detection_count / num_errors_injected) * 100 if num_errors_injected > 0 else 0.0
     avg_delay_ms = (total_time / run_num) * 1000
 
-    # CSV 파일 저장 (result_csv 디렉터리로 이동)
+    # CSV 파일 저장 경로 설정 (현재 스크립트 파일 위치 기준)
+    script_dir = os.path.dirname(os.path.abspath(__file__)) # 현재 파일의 절대 경로 디렉터리
+    out_dir = os.path.join(script_dir, 'result_csv')        # 스크립트 위치/result_csv
+    
     filename = f"{crc_type.name}_Data{data_word_length}bit_Error{error_rate}pct.csv"
-    out_dir = 'result_csv'
     os.makedirs(out_dir, exist_ok=True)
     filepath = os.path.join(out_dir, filename)
     
@@ -182,11 +184,14 @@ def main():
 
     print("\n--- All Simulations Complete ---")
 
-    # 최종 통계 요약 저장
-    summary_dir = 'result_csv'
+    # 최종 통계 요약 저장 (현재 스크립트 파일 위치 기준)
+    script_dir = os.path.dirname(os.path.abspath(__file__)) # 현재 파일의 절대 경로 디렉터리
+    summary_dir = os.path.join(script_dir, 'result_csv')    # 스크립트 위치/result_csv
+    
     os.makedirs(summary_dir, exist_ok=True)
     summary_filename = "Summary_Report_Statistics.csv"
     summary_path = os.path.join(summary_dir, summary_filename)
+    
     fieldnames = report_stats[0].keys()
     with open(summary_path, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
