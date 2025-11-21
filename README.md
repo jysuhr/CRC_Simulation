@@ -11,6 +11,11 @@
 </p>
 
 ## 시뮬레이션 결과 시각화
+Environment
+- Device: MacBook Air (M2, 2022)
+- Processor: Apple M2 (8-core CPU, 10-core GPU)
+- Memory: 24GB Unified Memory
+
 에러 확률 0%는 평균치 계산에서 제외했습니다.
 <img width="800" alt="타입별 디텍션 BarChart_0제외" src="https://github.com/user-attachments/assets/6296aa3b-7863-4cd7-ad64-bc9905f5d714" />
 
